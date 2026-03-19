@@ -1,0 +1,258 @@
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.bc{font-family:'DM Sans',sans-serif;background:var(--color-background-secondary);padding:20px;border-radius:20px;}
+.bc-card{background:var(--color-background-primary);border-radius:18px;overflow:hidden;border:1px solid rgba(107,79,160,0.12);}
+
+.bc-nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid rgba(107,79,160,0.1);background:var(--color-background-primary);}
+.bc-logo img{height:40px;width:auto;display:block;}
+.bc-pill{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:5px 14px;border-radius:100px;background:linear-gradient(135deg,#6B4FA0,#1DB8C4);color:#fff;}
+
+.bc-hero{padding:32px 24px 24px;border-bottom:1px solid rgba(107,79,160,0.1);}
+.bc-hero-tag{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#1DB8C4;margin-bottom:10px;}
+.bc-hero-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1.2;color:var(--color-text-primary);margin-bottom:12px;letter-spacing:-0.01em;}
+.bc-hero-title span{background:linear-gradient(135deg,#6B4FA0,#1DB8C4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.bc-hero-sub{font-size:14px;line-height:1.7;color:var(--color-text-secondary);max-width:620px;}
+
+.bc-tabs{display:flex;gap:0;padding:0 24px;border-bottom:1px solid rgba(107,79,160,0.1);background:var(--color-background-secondary);}
+.bc-tab{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;padding:14px 18px;border:none;background:none;cursor:pointer;color:var(--color-text-tertiary);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;letter-spacing:0.01em;}
+.bc-tab.on{color:#6B4FA0;border-bottom-color:#6B4FA0;font-weight:600;}
+.bc-tab:hover:not(.on){color:var(--color-text-primary);}
+
+.bc-body{padding:24px;}
+.sec{display:none;}.sec.on{display:block;}
+
+.stat-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:20px;}
+.stat{background:var(--color-background-secondary);border-radius:14px;padding:18px;border:1px solid rgba(107,79,160,0.08);}
+.stat-label{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:8px;}
+.stat-val{font-family:'DM Mono',monospace;font-size:26px;font-weight:500;letter-spacing:-0.02em;line-height:1;margin-bottom:4px;}
+.stat-sub{font-size:12px;color:var(--color-text-tertiary);}
+.stat-val.danger{color:#C0392B;}
+.stat-val.success{color:#0F6E56;}
+.stat-val.brand{background:linear-gradient(135deg,#6B4FA0,#1DB8C4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+.ctable{border-radius:14px;overflow:hidden;border:1px solid rgba(107,79,160,0.12);margin-bottom:20px;}
+.ctable-head{display:grid;grid-template-columns:minmax(0,1fr) 140px 140px;background:#1A1A2E;padding:0;}
+.cth{padding:12px 16px;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);}
+.cth.s{color:#FF9090;text-align:center;}
+.cth.g{color:#5DCAA5;text-align:center;}
+.crow{display:grid;grid-template-columns:minmax(0,1fr) 140px 140px;border-bottom:1px solid rgba(107,79,160,0.08);}
+.crow:last-child{border:none;}
+.crow.alt{background:rgba(107,79,160,0.03);}
+.cc{padding:10px 16px;font-size:13px;color:var(--color-text-secondary);display:flex;align-items:center;}
+.cc.s{justify-content:center;color:#C0392B;font-weight:500;}
+.cc.g{justify-content:center;color:#0F6E56;font-weight:500;}
+.ctotal{display:grid;grid-template-columns:minmax(0,1fr) 140px 140px;background:rgba(107,79,160,0.06);border-top:2px solid rgba(107,79,160,0.15);}
+.ctc{padding:14px 16px;font-size:14px;font-weight:600;color:#6B4FA0;display:flex;align-items:center;font-family:'DM Sans',sans-serif;}
+.ctc.s{justify-content:center;color:#C0392B;font-size:16px;}
+.ctc.g{justify-content:center;color:#0F6E56;font-size:16px;}
+
+.blist{display:flex;flex-direction:column;gap:14px;margin-bottom:20px;}
+.bitem-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;}
+.bitem-key{color:var(--color-text-secondary);}
+.bitem-val{font-weight:600;color:#C0392B;font-family:'DM Sans',sans-serif;}
+.btrack{height:10px;background:rgba(107,79,160,0.08);border-radius:100px;overflow:hidden;}
+.bfill{height:100%;border-radius:100px;}
+
+.vs-wrap{display:grid;grid-template-columns:minmax(0,1fr) 32px minmax(0,1fr);gap:12px;margin-bottom:20px;align-items:start;}
+.vs-panel{border-radius:14px;overflow:hidden;border:1px solid rgba(107,79,160,0.12);}
+.vs-head{padding:14px 18px;border-bottom:1px solid rgba(107,79,160,0.1);}
+.vs-head.s{background:rgba(192,57,43,0.06);}
+.vs-head.g{background:rgba(107,79,160,0.07);}
+.vs-head-label{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
+.vs-head-label.s{color:#9B2316;}
+.vs-head-label.g{color:#6B4FA0;}
+.vs-item{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;border-bottom:1px solid rgba(107,79,160,0.06);}
+.vs-item:last-child{border:none;}
+.vs-k{font-size:12px;color:var(--color-text-tertiary);}
+.vs-v{font-size:12px;font-weight:600;}
+.vs-v.s{color:#C0392B;}
+.vs-v.g{color:#6B4FA0;}
+.vs-mid{display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;color:var(--color-text-tertiary);}
+
+/* Objections — premium redesign */
+.objlist{display:flex;flex-direction:column;gap:0;margin-bottom:20px;border-radius:16px;overflow:hidden;border:1px solid rgba(107,79,160,0.14);}
+.obj{display:grid;grid-template-columns:1fr 1fr;min-height:90px;}
+.obj:not(:last-child){border-bottom:1px solid rgba(107,79,160,0.1);}
+.obj-q{position:relative;padding:20px 22px 20px 26px;background:linear-gradient(110deg,rgba(192,57,43,0.055) 0%,rgba(192,57,43,0.01) 100%);border-right:1px solid rgba(107,79,160,0.1);display:flex;flex-direction:column;justify-content:center;gap:7px;}
+.obj-q::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#C0392B 0%,rgba(192,57,43,0.25) 100%);}
+.obj-num{font-family:'DM Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:0.12em;color:rgba(192,57,43,0.5);}
+.obj-text.q{font-size:13.5px;font-weight:600;line-height:1.5;color:var(--color-text-primary);}
+.obj-a{position:relative;padding:20px 22px 20px 26px;background:var(--color-background-primary);display:flex;flex-direction:column;justify-content:center;gap:7px;}
+.obj-a::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#6B4FA0 0%,#1DB8C4 100%);}
+.obj-tag{font-family:'DM Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;}
+.obj-tag.q{color:#C0392B;opacity:0.6;}
+.obj-tag.a{background:linear-gradient(135deg,#6B4FA0,#1DB8C4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:1;}
+.obj-text.a{font-size:13px;line-height:1.65;color:var(--color-text-secondary);}
+.obj-header{display:flex;align-items:center;gap:10px;padding:11px 24px;background:linear-gradient(90deg,rgba(107,79,160,0.07),rgba(29,184,196,0.04));border-bottom:1px solid rgba(107,79,160,0.1);}
+.obj-header-col{font-family:'DM Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;flex:1;}
+.obj-header-col.q{color:#C0392B;padding-left:26px;}
+.obj-header-col.a{color:#6B4FA0;padding-left:26px;}
+
+.qblock{position:relative;background:linear-gradient(135deg,rgba(107,79,160,0.06),rgba(29,184,196,0.05));border:1px solid rgba(107,79,160,0.14);border-radius:16px;padding:24px 28px 20px 28px;margin-bottom:20px;overflow:hidden;}
+.qblock::before{content:'\201C';position:absolute;top:-10px;left:16px;font-family:'Playfair Display',serif;font-size:96px;line-height:1;color:rgba(107,79,160,0.12);pointer-events:none;user-select:none;}
+.qtext{position:relative;font-family:'DM Sans',sans-serif;font-size:14px;font-style:normal;font-weight:500;color:var(--color-text-primary);line-height:1.75;margin-bottom:14px;padding-left:4px;}
+.qattr{display:inline-flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#1DB8C4;}
+.qattr::before{content:'';display:inline-block;width:20px;height:2px;background:linear-gradient(90deg,#6B4FA0,#1DB8C4);border-radius:2px;flex-shrink:0;}
+
+
+</style>
+
+<div class="bc">
+<div class="bc-card">
+
+  <div class="bc-nav">
+    <div class="bc-logo">
+      <img src="https://raw.githubusercontent.com/m1crojr/Holiday/main/Cogent%20University%20Logo_Color%20(1).png" style="height:36px;width:auto;display:block;">
+    </div>
+    <div class="bc-pill">Battle card</div>
+  </div>
+
+  <div class="bc-hero">
+    <div class="bc-hero-tag">USC &amp; GC tech candidates</div>
+    <h1 class="bc-hero-title">The real cost of<br><span>job searching alone</span></h1>
+    <p class="bc-hero-sub">Most candidates spend $700–$5,500+ and 40–60 hours before landing a single interview — with no structured support, no recruiter network, and no positioning strategy.</p>
+  </div>
+
+  <div class="bc-tabs">
+    <button class="bc-tab on" onclick="go('cost',this)">Cost breakdown</button>
+    <button class="bc-tab" onclick="go('time',this)">Time investment</button>
+    <button class="bc-tab" onclick="go('compare',this)">Solo vs. Cogent</button>
+    <button class="bc-tab" onclick="go('objections',this)">Handle objections</button>
+  </div>
+
+  <div class="bc-body">
+
+    <div id="cost" class="sec on">
+      <div class="stat-row">
+        <div class="stat"><div class="stat-label">Basic prep</div><div class="stat-val danger">$720</div><div class="stat-sub">Minimum solo spend</div></div>
+        <div class="stat"><div class="stat-label">Moderate prep</div><div class="stat-val danger">$2,410</div><div class="stat-sub">Most common scenario</div></div>
+        <div class="stat"><div class="stat-label">Serious prep</div><div class="stat-val danger">$5,510+</div><div class="stat-sub">Competitive candidates</div></div>
+      </div>
+      <div class="ctable">
+        <div class="ctable-head"><div class="cth">Expense category</div><div class="cth s">Going solo</div><div class="cth g">Cogent</div></div>
+        <div class="crow"><div class="cc">LinkedIn Premium (6 mo)</div><div class="cc s">$360</div><div class="cc g">Included</div></div>
+        <div class="crow alt"><div class="cc">Resume writing service</div><div class="cc s">$150–$500</div><div class="cc g">Included</div></div>
+        <div class="crow"><div class="cc">LinkedIn profile optimization</div><div class="cc s">$100–$400</div><div class="cc g">Included</div></div>
+        <div class="crow alt"><div class="cc">GitHub portfolio setup</div><div class="cc s">$100–$500</div><div class="cc g">Included</div></div>
+        <div class="crow"><div class="cc">Interview prep course</div><div class="cc s">$300–$2,000</div><div class="cc g">Included</div></div>
+        <div class="crow alt"><div class="cc">Skill upgrade courses</div><div class="cc s">$200–$3,000</div><div class="cc g">Included</div></div>
+        <div class="crow"><div class="cc">Certification guidance</div><div class="cc s">$150–$400 each</div><div class="cc g">Guided</div></div>
+        <div class="crow alt"><div class="cc">Mock interviews</div><div class="cc s">$100–$500</div><div class="cc g">Included</div></div>
+        <div class="crow"><div class="cc">Coding practice platform</div><div class="cc s">$35–$100/mo</div><div class="cc g">Included</div></div>
+        <div class="ctotal"><div class="ctc">Total investment</div><div class="ctc s">$700–$5,500+</div><div class="ctc g">One program fee</div></div>
+      </div>
+      <div class="qblock"><div class="qtext">"Despite spending thousands, most candidates still struggle — not from skill gaps, but from the absence of structured evaluation, targeted preparation, and proper market positioning."</div></div>
+    </div>
+
+    <div id="time" class="sec">
+      <div class="stat-row">
+        <div class="stat"><div class="stat-label">Apps to 1 interview</div><div class="stat-val danger">~40</div><div class="stat-sub">At 2–8% interview rate</div></div>
+        <div class="stat"><div class="stat-label">Time per application</div><div class="stat-val danger">30 min</div><div class="stat-sub">ATS + customization</div></div>
+        <div class="stat"><div class="stat-label">Total effort</div><div class="stat-val danger">40–60 hrs</div><div class="stat-sub">Just for 1 interview</div></div>
+      </div>
+      <div class="blist">
+        <div><div class="bitem-label"><span class="bitem-key">Filling ~40 applications</span><span class="bitem-val">20 hrs</span></div><div class="btrack"><div class="bfill" style="width:100%;background:linear-gradient(90deg,#C0392B,#E74C3C);"></div></div></div>
+        <div><div class="bitem-label"><span class="bitem-key">Company &amp; role research</span><span class="bitem-val">8–15 hrs</span></div><div class="btrack"><div class="bfill" style="width:62%;background:linear-gradient(90deg,#C0392B,#E74C3C);"></div></div></div>
+        <div><div class="bitem-label"><span class="bitem-key">Resume tailoring per role</span><span class="bitem-val">6–12 hrs</span></div><div class="btrack"><div class="bfill" style="width:48%;background:#E74C3C99;"></div></div></div>
+        <div><div class="bitem-label"><span class="bitem-key">Interview preparation</span><span class="bitem-val">5–10 hrs</span></div><div class="btrack"><div class="bfill" style="width:38%;background:#E74C3C66;"></div></div></div>
+        <div><div class="bitem-label"><span class="bitem-key">Recruiter follow-ups</span><span class="bitem-val">3–6 hrs</span></div><div class="btrack"><div class="bfill" style="width:24%;background:#E74C3C44;"></div></div></div>
+      </div>
+      <div class="qblock"><div class="qtext">"Candidates aren't just paying in dollars — they're spending weeks of effort before a single interview, with no guarantee on the other end."</div></div>
+    </div>
+
+    <div id="compare" class="sec">
+      <div class="vs-wrap">
+        <div class="vs-panel">
+          <div class="vs-head s"><div class="vs-head-label s">Going solo</div></div>
+          <div class="vs-item"><span class="vs-k">Total cost</span><span class="vs-v s">$700–$5,500+</span></div>
+          <div class="vs-item"><span class="vs-k">Time to 1 interview</span><span class="vs-v s">40–60 hrs</span></div>
+          <div class="vs-item"><span class="vs-k">Interview rate</span><span class="vs-v s">2–8%</span></div>
+          <div class="vs-item"><span class="vs-k">Market positioning</span><span class="vs-v s">Unstructured</span></div>
+          <div class="vs-item"><span class="vs-k">Evaluation support</span><span class="vs-v s">None</span></div>
+          <div class="vs-item"><span class="vs-k">Recruiter access</span><span class="vs-v s">Cold outreach only</span></div>
+        </div>
+        <div class="vs-mid">vs</div>
+        <div class="vs-panel">
+          <div class="vs-head g"><div class="vs-head-label g">Cogent University</div></div>
+          <div class="vs-item"><span class="vs-k">Total cost</span><span class="vs-v g">All-inclusive program fee</span></div>
+          <div class="vs-item"><span class="vs-k">Time to 1 interview</span><span class="vs-v g">Targeted pipeline</span></div>
+          <div class="vs-item"><span class="vs-k">Interview rate</span><span class="vs-v g">Higher hit rate</span></div>
+          <div class="vs-item"><span class="vs-k">Market positioning</span><span class="vs-v g">Guided + optimized</span></div>
+          <div class="vs-item"><span class="vs-k">Evaluation support</span><span class="vs-v g">Ongoing</span></div>
+          <div class="vs-item"><span class="vs-k">Recruiter access</span><span class="vs-v g">Direct network</span></div>
+        </div>
+      </div>
+      <div class="qblock"><div class="qtext">"Cogent doesn't just replace the expense — it replaces the uncertainty. One structured program fee covers everything the solo candidate pieces together over months, at a fraction of the stress."</div></div>
+    </div>
+
+    <div id="objections" class="sec">
+      <div class="objlist">
+
+        <div class="obj" style="min-height:auto;">
+          <div class="obj-header-col q" style="padding:11px 22px 11px 26px;background:linear-gradient(110deg,rgba(192,57,43,0.06),rgba(192,57,43,0.01));border-right:1px solid rgba(107,79,160,0.1);font-family:'DM Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#C0392B;">Objection</div>
+          <div class="obj-header-col a" style="padding:11px 22px 11px 26px;background:linear-gradient(110deg,rgba(107,79,160,0.06),rgba(29,184,196,0.03));font-family:'DM Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#6B4FA0;">Cogent Response</div>
+        </div>
+
+        <div class="obj">
+          <div class="obj-q">
+            <div class="obj-num">01 — THEY SAY</div>
+            <div class="obj-text q">"I can find a job on my own."</div>
+          </div>
+          <div class="obj-a">
+            <div class="obj-tag a">YOU SAY</div>
+            <div class="obj-text a">Most candidates spend 40–60 hrs and up to $5,500 before landing even one interview — with no guarantee. Cogent gives you a structured, faster, recruiter-backed path.</div>
+          </div>
+        </div>
+
+        <div class="obj">
+          <div class="obj-q">
+            <div class="obj-num">02 — THEY SAY</div>
+            <div class="obj-text q">"I already have a resume and LinkedIn."</div>
+          </div>
+          <div class="obj-a">
+            <div class="obj-tag a">YOU SAY</div>
+            <div class="obj-text a">That covers roughly $350 of the $5,500+ typically invested. You still need targeted positioning, interview readiness, evaluation support, and direct recruiter access.</div>
+          </div>
+        </div>
+
+        <div class="obj">
+          <div class="obj-q">
+            <div class="obj-num">03 — THEY SAY</div>
+            <div class="obj-text q">"What makes Cogent different from a course?"</div>
+          </div>
+          <div class="obj-a">
+            <div class="obj-tag a">YOU SAY</div>
+            <div class="obj-text a">Courses give content. Cogent gives market access — structured evaluation, active recruiter relationships, and a real placement pipeline.</div>
+          </div>
+        </div>
+
+        <div class="obj">
+          <div class="obj-q">
+            <div class="obj-num">04 — THEY SAY</div>
+            <div class="obj-text q">"The market is tough right now."</div>
+          </div>
+          <div class="obj-a">
+            <div class="obj-tag a">YOU SAY</div>
+            <div class="obj-text a">Exactly why going alone is riskier. When competition is fierce, structured positioning and direct recruiter access aren't optional — they're the edge that gets you in the room.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+</div>
+
+<script>
+function go(id, btn) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.bc-tab').forEach(b => b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
